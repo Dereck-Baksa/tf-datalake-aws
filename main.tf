@@ -1,4 +1,3 @@
-# ===================== main.tf =====================
 
 resource "random_string" "sufixo" {
   length  = 6
@@ -197,7 +196,6 @@ resource "aws_glue_crawler" "glue_crawler" {
   depends_on = [aws_glue_job.glue_etl_job]
 }
 
-# ---------------------- Glue Crawler (Gold) ----------------------
 resource "aws_glue_crawler" "glue_crawler_gold" {
   name          = "glue-crawler-gold"
   role          = aws_iam_role.glue_role.arn
@@ -215,7 +213,6 @@ resource "aws_glue_crawler" "glue_crawler_gold" {
   depends_on = [aws_glue_job.glue_gold_job]
 }
 
-# ---------------------- Athena ----------------------
 resource "aws_athena_workgroup" "athena_sql" {
   name = "${var.project_name}-athena-wg"
 
